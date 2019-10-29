@@ -6,9 +6,11 @@
   "author": "Maksim Black <mbkkong@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "ng build"
   },
   "dependencies": {
     "json-server": "^0.15.0"
   }
 }
+
