@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Darts</title>
+
+</head>
+
+<body>
+
+    <script>
+        document.body.style.backgroundImage = 'url(Back.jpg)'; //Фон
+
+        var Bird1 = create('img'); //Птицы
+        Bird1.src = 'Bird1.gif'; //хранилище
+        Bird1.width = '30';
+        Bird1.height = '30';
+        Bird1.style.position = 'absolute';
+        Bird1.style.transition = '3s';
+        function dvizhenie1() {
+            var maxWidth = "1300";
+            var minWidth = "5";
+            var maxHeight = "700";
+            var minHeight = "5";
+            var random1 = Math.floor(Math.random() * (+maxWidth - +minWidth)) + +minWidth;
+            var random2 = Math.floor(Math.random() * (+maxHeight - +minHeight)) + +minHeight;
+            Bird1.style.top = random2 + "px";
+            Bird1.style.left = random1 + "px";
+        }
+        setInterval(dvizhenie1, 200);
+
+        var Bird2 = create('img'); //Птицы
+        Bird2.src = 'Bird2.gif'; //хранилище
+        Bird2.width = '40';
+        Bird2.height = '40';
+        Bird2.style.position = 'absolute';
+        Bird2.style.transition = '3s';
+        function dvizhenie2() {
+            var maxWidth = "1300";
+            var minWidth = "5";
+            var maxHeight = "650";
+            var minHeight = "5";
+            var random1 = Math.floor(Math.random() * (+maxWidth - +minWidth)) + +minWidth;
+            var random2 = Math.floor(Math.random() * (+maxHeight - +minHeight)) + +minHeight;
+            Bird2.style.top = random2 + "px";
+            Bird2.style.left = random1 + "px";
+        }
+        setInterval(dvizhenie2, 200);
+
+        var Bird3 = create('img');
+        Bird3.src = 'Bird3.gif'; //хранилище
+        Bird3.width = '40';
+        Bird3.height = '40';
+        Bird3.style.position = 'absolute';
+        Bird3.style.transition = '3s';
+        function dvizhenie3() {
+            var maxWidth = "1200";
+            var minWidth = "5";
+            var maxHeight = "600";
+            var minHeight = "5";
+            var random1 = Math.floor(Math.random() * (+maxWidth - +minWidth)) + +minWidth;
+            var random2 = Math.floor(Math.random() * (+maxHeight - +minHeight)) + +minHeight;
+            Bird3.style.top = random2 + "px";
+            Bird3.style.left = random1 + "px";
+        }
+        setInterval(dvizhenie3, 200);
+
+        var Bird4 = create('img');
+        Bird4.src = 'Bird4.gif'; //хранилище
+        Bird4.width = '40';
+        Bird4.height = '40';
+        Bird4.style.position = 'absolute';
+        Bird4.style.transition = '3s';
+        function dvizhenie4() {
+            var maxWidth = "1200";
+            var minWidth = "5";
+            var maxHeight = "600";
+            var minHeight = "5";
+            var random1 = Math.floor(Math.random() * (+maxWidth - +minWidth)) + +minWidth;
+            var random2 = Math.floor(Math.random() * (+maxHeight - +minHeight)) + +minHeight;
+            Bird4.style.top = random2 + "px";
+            Bird4.style.left = random1 + "px";
+        }
+        setInterval(dvizhenie4, 200);
+
+        document.onmousemove = function (event) { //привязка к курсору
+            img.style.top = `${event.clientY - 40}px`; //закрепление дротика по осям Y- вертикаль (-)-отступ от курсора
+            img.style.left = `${event.clientX}px`; //закрепление дротика по осям X-горизонталь
+        }
+
+        var img = create('img'); // привязка к курсору
+        img.src = 'dart.png'; //хранилище
+        img.width = '50'; // ширина дротика
+        img.style.position = 'absolute';
+
+        function changeImg(source) {
+            img.src = "http://hddfhm.com/images/animated-clipart-darts-9.gif";
+        };
+
+        function soundClick() {    //звук на попадание
+            var audio = new Audio();
+            audio.src = 'trek_1.mp3';
+            audio.autoplay = true; // автомат.запуск
+        }
+
+        var score = 0; //переменная для подсчета очков
+
+        function create(tag) { return document.createElement(tag) } //GREEN
+        var div1 = create('div'); //GREEN             
+        div1.style.width = '320px'; //ширина круга
+        div1.style.height = '320px'; //высота круга
+        div1.style.background = '#228B22'; //цвет круга
+        div1.style.position = 'absolute'; //накладка
+        div1.style.top = 'calc(50% - 160px)'; //размещение относительно верха экрана
+        div1.style.left = 'calc(50% - 160px)'; //размещение относительно левой стороны экрана
+        div1.style.borderRadius = '200px'; //скругление 
+        div1.style.border = '2px double white';
+
+        div1.addEventListener("click", function (event) {
+            var h = window.innerHeight; //768
+            var w = window.innerWidth; //1366
+            var halfWidth = (w - 320) / 2;
+            var halfHeight = (h - 320) / 2;
+            if (
+                event.clientX > halfWidth
+                && event.clientX < w - halfWidth
+                && event.clientY > halfHeight
+                && event.clientY < h - halfHeight
+            ) {
+                changeImg();
+                setTimeout(imgGreen, 800);
+                function imgGreen() {
+                    img.src = 'dart.png';
+                    score += 2;
+                    console.log(score);
+                }
+                soundClick();
+            }
+        });
+
+        function create(tag) { return document.createElement(tag) } //BLACK
+        var div2 = create('div'); //BLACK
+        div2.style.width = '160px'; //ширина круга
+        div2.style.height = '160px'; //высота круга
+        div2.style.background = 'black'; //цвет круга
+        div2.style.position = 'absolute'; //накладка
+        div2.style.top = 'calc(50% - 80px)'; //размещение относительно верха экрана
+        div2.style.left = 'calc(50% - 80px)'; //размещение относительно левой стороны экрана
+        div2.style.borderRadius = '200px'; //скругление краев
+        div2.style.border = '2px double white';
+
+        div2.addEventListener("click", function (event) {
+            var h = window.innerHeight; //768
+            var w = window.innerWidth; //1366
+            var halfWidth = (w - 160) / 2;
+            var halfHeight = (h - 160) / 2;
+            if (
+                event.clientX > halfWidth
+                && event.clientX < w - halfWidth
+                && event.clientY > halfHeight
+                && event.clientY < h - halfHeight
+            ) {
+                changeImg();
+                setTimeout(imgBlack, 800);
+                function imgBlack() {
+                    img.src = 'dart.png';
+                    score += 5;
+                    console.log(score);
+                }
+                soundClick();
+            }
+        });
+
+        function create(tag) { return document.createElement(tag) } //BLUE
+        var div3 = create('div'); //BLUE
+        div3.style.width = '80px'; //ширина круга
+        div3.style.height = '80px'; //высота круга
+        div3.style.background = '#008080'; //цвет круга
+        div3.style.position = 'absolute'; //накладка
+        div3.style.top = 'calc(50% - 40px)'; //размещение относительно верха экрана
+        div3.style.left = 'calc(50% - 40px)'; //размещение относительно левой стороны экрана
+        div3.style.borderRadius = '200px'; //скругление краев
+        div3.style.border = '1.5px double white';
+
+        div3.addEventListener("click", function (event) {
+            var h = window.innerHeight; //768
+            var w = window.innerWidth; //1366
+            var halfWidth = (w - 80) / 2;
+            var halfHeight = (h - 80) / 2;
+            if (
+                event.clientX > halfWidth
+                && event.clientX < w - halfWidth
+                && event.clientY > halfHeight
+                && event.clientY < h - halfHeight
+            ) {
+                changeImg();
+                setTimeout(imgBlue, 800);
+                function imgBlue() {
+                    img.src = 'dart.png';
+                    score += 8;
+                    console.log(score);
+                }
+                soundClick();
+            }
+        });
+
+        function create(tag) { return document.createElement(tag) }   //RED
+        var div4 = create('div'); //RED
+        div4.style.width = '40px'; //ширина круга
+        div4.style.height = '40px'; //высота круга
+        div4.style.background = '#8B0000'; //цвет круга
+        div4.style.position = 'absolute'; //накладка
+        div4.style.top = 'calc(50% - 20px)'; //размещение относительно верха экрана
+        div4.style.left = 'calc(50% - 20px)'; //размещение относительно левой стороны экрана
+        div4.style.borderRadius = '200px'; //скругление краев
+        div4.style.border = '1.5px double white';
+
+        div4.addEventListener("click", function (event) {
+            var h = window.innerHeight; //768
+            var w = window.innerWidth; //1366
+            var halfWidth = (w - 40) / 2;
+            var halfHeight = (h - 40) / 2;
+            if (
+                event.clientX > halfWidth
+                && event.clientX < w - halfWidth
+                && event.clientY > halfHeight
+                && event.clientY < h - halfHeight
+            ) {
+                changeImg();
+                setTimeout(imgRed, 800);
+                function imgRed() {
+                    img.src = 'dart.png';
+                    score += 10;
+                    console.log(score);
+                }
+                soundClick();
+            }
+        });
+
+        setTimeout(function run() {  //просчет очков
+            if (score < 5) {
+                alert("Вы совсем не старались! Количество набранных балов: " + score);
+                score = 0;
+                setTimeout(run, 30000)
+            } else {
+                alert("Вы молодец! Количество набранных балов: " + score);
+                score = 0;
+                setTimeout(run, 30000)
+            }
+        }, 30000);
+
+        var audio = document.createElement('audio'); // Птицы аудио
+        audio.src = "trek.mp3";
+        audio.autoplay = "autoplay";
+        audio.loop = "loop";
+        audio.volume = 0.1; //1-0
+        audio.play();
+
+        var soundFile = document.createElement("audio"); //Fon аудио
+        soundFile.src = "Fon.mp3";
+        soundFile.volume = 0.5;
+        soundFile.loop = "loop";
+        soundFile.play();
+
+
+        document.body.appendChild(Bird1)
+        document.body.appendChild(Bird2)
+        document.body.appendChild(Bird3)
+        document.body.appendChild(Bird4)
+        document.body.appendChild(div1)
+        document.body.appendChild(div2)
+        document.body.appendChild(div3)
+        document.body.appendChild(div4)
+        document.body.appendChild(img)
+
+    </script>
+
+</body>
+
+</html>
